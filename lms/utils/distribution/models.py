@@ -231,7 +231,7 @@ class Distribution(BaseModel):
                 "",
                 "",
                 "",
-                "Сдана в",
+                "Сдана",
             ]
             r.student_homeworks.sort(key=lambda hw: hw.sent_to_review_at)
             for hw in r.student_homeworks:
