@@ -1,6 +1,7 @@
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from datetime import datetime
+from typing import Final
 
 from aiomisc import threaded
 from google_api_service_helper import GoogleDrive, GoogleSheets
@@ -18,8 +19,8 @@ from lms.utils.distribution.models import (
     StudentHomework,
 )
 
-SHEET_INDEX = 4
-SHEET_MAJOR_DIMENSION = "COLUMNS"
+SHEET_INDEX: Final[int] = 4
+SHEET_MAJOR_DIMENSION: Final[str] = "COLUMNS"
 
 
 @dataclass(frozen=True, slots=True)
@@ -183,6 +184,7 @@ def _filter_homeworks(
             student_soho_id=hw.student_soho_id,
             submission_url=hw.chat_url,
             homework_id=hw.homework_id,
+            sent_to_review_at=hw.sent_to_review_at,
         )
         pre_filtered_homeworks.append(sh)
     return pre_filtered_homeworks, error_homeworks

@@ -41,6 +41,7 @@ class StudentHomework(BaseModel):
     student_soho_id: int
     submission_url: str
     homework_id: int
+    sent_to_review_at: datetime
 
 
 class ErrorHomework(BaseModel):
@@ -225,13 +226,33 @@ class Distribution(BaseModel):
                 "",
                 "Homework ID",
             ]
+            column_sent_at: list[int | str] = [
+                "",
+                "",
+                "",
+                "",
+                "Сдана в",
+            ]
+            r.student_homeworks.sort(key=lambda hw: hw.sent_to_review_at)
             for hw in r.student_homeworks:
                 column_identify.append(str(hw.student_vk_id))
                 column_name.append(
                     f'=HYPERLINK("{hw.submission_url}";"{hw.student_name}")'
                 )
                 column_homework_id.append(hw.homework_id)
-            data.extend([column_identify, column_name, column_homework_id, [], [], []])
+                column_sent_at.append(
+                    hw.sent_to_review_at.strftime("%H:%M:%S %d.%m.%Y")
+                )
+            data.extend(
+                [
+                    column_identify,
+                    column_name,
+                    column_homework_id,
+                    column_sent_at,
+                    [],
+                    [],
+                ]
+            )
         error_identify: list[int | str] = ["Домашние работы с ошибками"]
         error_name: list[str | int] = [""]
         error_message: list[str | int] = [""]

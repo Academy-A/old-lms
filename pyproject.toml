@@ -9,7 +9,6 @@ packages = [{include = "lms"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
-pydantic-settings = "^2.0.3"
 SQLAlchemy = "^2.0.22"
 pydantic = {extras = ["email"], version = "^2.4.2"}
 orjson = "^3.9.9"
