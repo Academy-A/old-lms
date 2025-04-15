@@ -241,7 +241,7 @@ class Distribution(BaseModel):
                 )
                 column_homework_id.append(hw.homework_id)
                 column_sent_at.append(
-                    hw.sent_to_review_at.strftime("%H:%M:%S %d.%m.%Y")
+                    hw.sent_to_review_at.strftime("%d.%m.%Y %H:%M:%S")
                 )
             data.extend(
                 [
